@@ -156,12 +156,15 @@ public class AiTunas {
             this.songs = new ArrayList<>();
             this.songs.addAll(getAllSongFromArtist(artist));
         }
-        public int getDuration(){
-            int c=0;
-            for(Album.Song song:songs){
-                c+=song.getDurationInt();
+        public Time getDuration(){
+            Time tempoTotal=new Time(0,0);
+            for(Album.Song song : songs){
+                tempoTotal=tempoTotal.newAddTime(song.getDuration());
             }
-            return c;
+            return tempoTotal;
+        }
+        public String getName(){
+            return this.name;
         }
         @Override
         public String toString() {
@@ -175,5 +178,6 @@ public class AiTunas {
             }
             return texto;
         }
+
     }
 }
